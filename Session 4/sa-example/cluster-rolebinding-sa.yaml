@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: read-secrets-global
+subjects:
+- kind: ServiceAccount
+  name: my-serviceaccount # name of your service account
+  namespace: dev # this is the namespace your service account is in
+roleRef: # referring to your ClusterRole
+  kind: ClusterRole
+  name: my-secrets-clusterrole
+  apiGroup: rbac.authorization.k8s.io
