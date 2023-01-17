@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    spec:
+      # completions: 2 # number of successful pods that are needed for this job to succeed.
+      # parallelism: 1 # number of parallel executions of the pods allowed.
+      containers:
+      - name: pi
+        image: perl:5.34.0
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never  # or onFailure to restart if the pod fails, in this case the command above.
+  backoffLimit: 4
+
+
